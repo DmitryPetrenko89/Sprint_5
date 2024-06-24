@@ -7,14 +7,12 @@ from ByConditions import ByConditions as BC
 
 @pytest.mark.usefixtures("setup", "registration")
 class TestAccountAccess:
-
     url = 'https://stellarburgers.nomoreparties.site/'
     registration_url = 'https://stellarburgers.nomoreparties.site/register'
     user_name = 'Dmitriy'
 
     @pytest.fixture(scope='function', autouse=True)
     def setup_and_teardown(self):
-
         # get new browser for each test
         self.driver = webdriver.Chrome(options=self.driver_options)
         self.driver.get(self.url)
@@ -25,7 +23,6 @@ class TestAccountAccess:
         self.driver.quit()
 
     def test_access_to_account_click_sign_in_button(self):
-
         self.driver.find_element(By.XPATH, BC.SIGN_IN_ACCOUNT_BUTTON).click()
         self.wait.until(expected.visibility_of_element_located((By.XPATH, BC.SIGN_IN_H2_TEXT)))
 
@@ -39,7 +36,6 @@ class TestAccountAccess:
         assert order_button.text == 'Оформить заказ'
 
     def test_access_to_account_press_personal_account_link(self):
-
         link = self.driver.find_element(By.XPATH, BC.PERSONAL_ACCOUNT_LINK)
         self.driver.execute_script('arguments[0].click();', link)
         self.wait.until(expected.visibility_of_element_located((By.XPATH, BC.SIGN_IN_H2_TEXT)))
@@ -54,7 +50,6 @@ class TestAccountAccess:
         assert order_button.text == 'Оформить заказ'
 
     def test_access_to_account_using_registration_link(self):
-
         self.driver.find_element(By.XPATH, BC.SIGN_IN_ACCOUNT_BUTTON).click()
         self.wait.until(expected.visibility_of_element_located((By.XPATH, BC.SIGN_IN_H2_TEXT)))
 
@@ -76,7 +71,6 @@ class TestAccountAccess:
         assert order_button.text == 'Оформить заказ'
 
     def test_access_to_account_using_restore_password_link(self):
-
         self.driver.find_element(By.XPATH, BC.SIGN_IN_ACCOUNT_BUTTON).click()
         self.wait.until(expected.visibility_of_element_located((By.XPATH, BC.SIGN_IN_H2_TEXT)))
 
@@ -96,20 +90,3 @@ class TestAccountAccess:
 
         order_button = self.driver.find_element(By.XPATH, '//*[@id="root"]/div/main/section[2]/div/button')
         assert order_button.text == 'Оформить заказ'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

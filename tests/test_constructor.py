@@ -32,9 +32,11 @@ class TestConstructor:
         self.driver.maximize_window()
         sauces = self.driver.find_element(By.XPATH, BC.CONSTRUCTOR_BUNS_DIV)
         self.driver.execute_script('arguments[0].click();', sauces)
-        self.wait.until(WaitForElementIsHidden(by=By.XPATH, search_condition=BC.CONSTRUCTOR_BUNS_H2_TEXT, expected_value=True))
+        self.wait.until(
+            WaitForElementIsHidden(by=By.XPATH, search_condition=BC.CONSTRUCTOR_BUNS_H2_TEXT, expected_value=True))
 
-        current_span = self.driver.find_element(By.XPATH, '//*[@id="root"]//*[contains(@class,"tab_tab_type_current")]/span')
+        current_span = self.driver.find_element(By.XPATH,
+                                                '//*[@id="root"]//*[contains(@class,"tab_tab_type_current")]/span')
         assert current_span.text == 'Соусы'
 
     def test_click_dips_switch_to_dips(self):
@@ -42,10 +44,9 @@ class TestConstructor:
         self.driver.maximize_window()
         dips = self.driver.find_element(By.XPATH, BC.CONSTRUCTOR_DIPS_DIV)
         self.driver.execute_script('arguments[0].click();', dips)
-        self.wait.until(WaitForElementIsHidden(by=By.XPATH, search_condition=BC.CONSTRUCTOR_SAUCES_H2_TEXT, expected_value=True))
+        self.wait.until(
+            WaitForElementIsHidden(by=By.XPATH, search_condition=BC.CONSTRUCTOR_SAUCES_H2_TEXT, expected_value=True))
 
-        current_span = self.driver.find_element(By.XPATH, '//*[@id="root"]//*[contains(@class,"tab_tab_type_current")]/span')
+        current_span = self.driver.find_element(By.XPATH,
+                                                '//*[@id="root"]//*[contains(@class,"tab_tab_type_current")]/span')
         assert current_span.text == 'Начинки'
-
-
-

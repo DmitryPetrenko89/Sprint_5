@@ -9,7 +9,6 @@ from ByConditions import ByConditions as BC
 
 @pytest.fixture(scope="class", params=['chrome'])
 def setup(request):
-
     cred_generator = CredentialGenerator()
     request.cls.email = cred_generator.random_email()
     request.cls.correct_password = cred_generator.random_password()
@@ -27,7 +26,7 @@ def setup(request):
 
     request.cls.driver = driver
 
-    wait = Wait(driver, timeout = 5, poll_frequency = 0.1)
+    wait = Wait(driver, timeout=5, poll_frequency=0.1)
     request.cls.wait = wait
 
     yield driver
@@ -45,5 +44,3 @@ def registration(request):
     request.cls.driver.find_element(By.XPATH, BC.REGISTRATION_EMAIL_INPUT).send_keys(request.cls.email)
     request.cls.driver.find_element(By.XPATH, BC.REGISTRATION_PASSWORD_INPUT).send_keys(request.cls.correct_password)
     request.cls.driver.find_element(By.XPATH, BC.REGISTRATION_BUTTON).click()
-
-

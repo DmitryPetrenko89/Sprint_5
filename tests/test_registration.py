@@ -46,11 +46,3 @@ class TestRegistration:
 
         element = self.wait.until(expected.visibility_of_element_located((By.CSS_SELECTOR, '.input__error')))
         assert element.text == 'Некорректный пароль'
-
-
-
-
-
-
-
-
